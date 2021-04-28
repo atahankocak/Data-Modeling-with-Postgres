@@ -1,5 +1,9 @@
+# read/write sql
 import psycopg2
+
+# local modules
 from sql_queries import create_table_queries, drop_table_queries
+from info import db_parameters, db_parameters_local
 
 
 def create_database():
@@ -21,8 +25,8 @@ def create_database():
     }
 
     try:
-        conn = psycopg2.connect(**parameters_dict_initial)
-        print("1 - Connected to the existing {} in {} to run the DROP and CREATE project database scripts.".format(parameters_dict_initial['database'], parameters_dict_initial['host']))
+        conn = psycopg2.connect(**db_parameters_local)
+        print("1 - Connected to the existing {} in {} to run the DROP and CREATE project database scripts.".format(db_parameters_local['database'], db_parameters_local['host']))
     except psycopg2.Error as e:
         print("Error: Could not make connection to the initial Postgres Database to drop and create the project database")
         print(e)
@@ -95,7 +99,7 @@ def create_tables(cur, conn):
 
 def main():
     """
-    1- Drops (if exists) and Creates the sparkify database.
+    1- Drops (if exists) and re-creates the sparkify database.
     2- Establishes connection with the sparkify database and gets cursor to it.
     3- Drops all the tables.
     4- Creates all tables needed.
@@ -112,7 +116,7 @@ def main():
 
     #5
     conn.close()
-    print("\n6 - Success!")
+    print("\nSuccess!")
 
 
 if __name__ == "__main__":
