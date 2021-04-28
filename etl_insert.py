@@ -1,21 +1,25 @@
+# system
 import os
 import glob
-import psycopg2
-import pandas as pd
-from sql_queries import *
 
-# connection parameters
-parameters_dict_project = {
-    "host": "localhost",
-    "database": "sparkifydb",
-    "port": "5432"
-}
-# filepaths to the datasets to be inserted
-filepath_song = 'data/song_data'
-filepath_log = 'data/log_data'
+# time
+from datetime import datetime
+
+# sql connector
+import psycopg2
+
+# data munging
+import pandas as pd
+
+# local libraries
+from sql_queries import *
+from info import db_parameters_local, filepath_song, filepath_log
 
 
 def process_song_file(cur, filepath):
+    """
+        Creates the dataframes to be inserted in the songs and artists tables.
+    """
     # open song file
     df = pd.read_json(filepath, lines=True)
 
@@ -29,6 +33,9 @@ def process_song_file(cur, filepath):
 
 
 def process_log_file(cur, filepath):
+    """
+        Creates  user, time, and songplay tables.
+    """
     # open log file
     df = pd.read_json(filepath, lines=True)
 
@@ -72,6 +79,9 @@ def process_log_file(cur, filepath):
 
 
 def process_data(cur, conn, filepath, func):
+    """
+        Processes the file groups, since the files are read one by one...
+    """
     # get all files matching extension from directory
     all_files = []
     for root, dirs, files in os.walk(filepath):
@@ -91,11 +101,12 @@ def process_data(cur, conn, filepath, func):
 
 
 def main():
-#    conn = psycopg2.connect("host=127.0.0.1 dbname=sparkifydb user=student password=student")
-    # connection
+    # initiate time measurement
+    startTime = datetime.now()
+
     try:
-        conn = psycopg2.connect(**parameters_dict_project)
-        print("Connection to databse {} is established.".format(parameters_dict_project['database']))
+        conn = psycopg2.connect(**db_parameters_local)
+        print("Connection to databse {} is established.".format(db_parameters_local['database']))
     except psycopg2.Error as e:
         print("Error: Could not make connection to the Postgres Database")
         print(e)
@@ -125,6 +136,8 @@ def main():
     cur.close()
     conn.close()
 
+    # print processing time
+    print("Processing time ", datetime.now() - startTime)
 
 if __name__ == "__main__":
     main()
