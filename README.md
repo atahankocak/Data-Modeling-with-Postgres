@@ -53,8 +53,8 @@ python etl_copy.py
 to populate the tables in your new database. 
 
 ### Last note
-In this particular exercise, I processed two JSON files with song and their log data for a project. However, this logic can be implemented into any dataset comeing in JSON format. 
-Please contact me if need more information about this etl pipeline or you need my help with implementing a similar pipline in your business. You can drop a note in the Linkedin messages. 
+In this particular exercise, I processed two JSON files with song and their log data for a project. However, this logic can be implemented into any dataset in JSON format wiht correct mapping. 
+Please contact me if need more information about this etl pipeline or you need my help with implementing a similar pipline in your business. You can drop a note to me in LinkedIn. 
 
 
 Kind regards,
