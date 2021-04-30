@@ -24,6 +24,11 @@ The 1st version (etl_insert.py) uses INSERT command to each iteration (line) of 
 
 Here is how you can run them.
 
+### Database Diagram  
+Here is the ERD of the project:
+
+![Database ER diagram (sparkifydb)](https://user-images.githubusercontent.com/51124648/116735398-6fd35a00-a9bc-11eb-8dc0-90c164830376.jpeg)
+
 ### Running The Project
 The very first thing to do is making sure that you have installed Postgres in your local or virtual machine. You can run the following command in your terminal: 
 
