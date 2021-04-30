@@ -25,7 +25,12 @@ The 1st version (etl_insert.py) uses INSERT command to each iteration (line) of 
 Here is how you can run them.
 
 ### Running The Project
-The very first thing to do is making sure that you have installed Postgres in your local or virtual machine. You can run the following command in your terminal "$ brew install postgresql". If you do not have Homebrew, I recommend to get it in your system. For mac users, you can find this website: (https://www.digitalocean.com/community/tutorials/how-to-install-and-use-homebrew-on-macos). Please check if you have the required libraries/packages/modules. Please see the "requirements.txt" to identfy what you would need to install in terms of Python packages. 
+The very first thing to do is making sure that you have installed Postgres in your local or virtual machine. You can run the following command in your terminal 
+
+``` sh
+$ brew install postgresql
+```
+If you do not have Homebrew, I recommend to get it in your system. For mac users, you can find this website: (https://www.digitalocean.com/community/tutorials/how-to-install-and-use-homebrew-on-macos). Please check if you have the required libraries/packages/modules. Please see the "requirements.txt" to identfy what you would need to install in terms of Python packages. 
 
 *I had some issues installing "psycopg2" library in the terminal. If you experience that, you can try running "!pip install psycopg2" in Jupyter notebook.* 
 
