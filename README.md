@@ -13,7 +13,7 @@ Now, let's go over the files.
 4) **sql_queries:** The file where the SQL queries stored , called, and run in the main processing file.
 5) **create_tables:** Processes to read sql_queries.py and create a new database and the tables.
 6) **etl_insert.py:** One of the main versions of the ETL architecture. It processes the source datasets, connects to the database, and uses all the above to create and populate the database and the tables in Postgres. It uses INSERT command. To be honest, it feels a bit clunky. Therefore, I developed a second version to help with the weight problem :).
-7) **etl_copy.py:**  This is the 2nd version of the main process. It differs where it processes the data. It uses COPY command after creating csv files out of each dataframe related to the table structures in the database. It is faster than the 1st version. 
+7) **etl_copy.py:**  This is the 2nd version of the main process. It differs where it processes the data. It uses COPY command after creating csv files out of each dataframe related to the table structures in the database. It is about twice as faster than the 1st version. 
   
 Now that we have a basic understanding of each file in the repo, we can jump right into the medthodology.
 
