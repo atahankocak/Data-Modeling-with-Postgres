@@ -132,6 +132,10 @@ def process_log_file(filepath, cur, conn):
     # filter by NextSong action to get the log oriented data under the proper category.
     df = df[df['page'] == "NextSong"]
 
+    # sort the df by userId and date to assit with users table -
+        # Our aim is to capture the latest level per user since we will utilize ON CONFLIT (userId) DO UPDATE SET level=EXCLUDED.level
+    df = df.sort_values(by=['userId', 'ts'], ascending=True)
+
     # convert timestamp column to datetime
     t = pd.to_datetime(df['ts'], unit='ms')
 
@@ -212,14 +216,13 @@ def main():
         print("Success! The song file is processed and distributed.")
     except Exception.Error as e:
         print("Error: Can't process the song file. Please check the process")
-        print(e)
+
 
     try:
         process_log_file(filepath_log, cur, conn)
         print("Success! The log file is processed and distributed.")
-    except Exception.Error as e:
+    except:
         print("Error: Can't process the song file. Please check the process")
-        print(e)
 
     # close connections
     cur.close()

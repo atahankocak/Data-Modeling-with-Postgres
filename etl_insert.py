@@ -42,6 +42,10 @@ def process_log_file(cur, filepath):
     # filter by NextSong action
     df = df[df['page'] == "NextSong"]
 
+    # sort the df by userId and date to assit with users table -
+        # Our aim is to capture the latest level per user since we will utilize ON CONFLIT (userId) DO UPDATE SET level=EXCLUDED.level
+    df = df.sort_values(by=['userId', 'ts'], ascending=True)
+
     # convert timestamp column to datetime
     t = pd.to_datetime(df['ts'], unit='ms')
 
@@ -122,16 +126,14 @@ def main():
     try:
         process_data(cur, conn, filepath=filepath_song, func=process_song_file)
         print("Datasets in {} is processed\n".format(filepath_song))
-    except Exception.Error as e:
+    except:
         print("Problem processing dataset in {}.".format(filepath_song))
-        print(e)
 
     try:
         process_data(cur, conn, filepath=filepath_log, func=process_log_file)
         print("Datasets in {} is processed\n".format(filepath_song))
-    except Exception.Error as e:
+    except:
         print("Problem processing dataset in {}.".format(filepath_log))
-        print(e)
 
     cur.close()
     conn.close()

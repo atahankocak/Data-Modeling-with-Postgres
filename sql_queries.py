@@ -14,9 +14,9 @@ temp_log_table_drop = "DROP TABLE IF EXISTS data_log;"
 songplay_table_create = ("""
     CREATE TABLE IF NOT EXISTS songplays (
           songPlay_id SERIAL PRIMARY KEY NOT NULL
-        , start_time BIGINT
-        , user_id INT
-        , level VARCHAR
+        , start_time BIGINT NOT NULL
+        , user_id INT NOT NULL
+        , level VARCHAR NOT NULL
         , song_id VARCHAR
         , artist_id VARCHAR
         , session_id INT
@@ -53,7 +53,7 @@ artist_table_create = ("""
 
 time_table_create = ("""
     CREATE TABLE IF NOT EXISTS time (
-          start_time BIGINT PRIMARY KEY
+          start_time BIGINT PRIMARY KEY NOT NULL
         , hour INT
         , day INT
         , week INT
@@ -73,7 +73,9 @@ songplay_table_insert = ("""
 user_table_insert = ("""
     INSERT INTO users (userId, firstName, lastName, gender, level)
     VALUES (%s, %s, %s, %s, %s)
-    ON CONFLICT DO NOTHING;
+    ON CONFLICT (userId)
+    DO UPDATE
+        SET level = EXCLUDED.level;
 """)
 
 song_table_insert = ("""
@@ -111,4 +113,3 @@ song_select = ("""
 
 create_table_queries = [songplay_table_create, user_table_create, song_table_create, artist_table_create, time_table_create]
 drop_table_queries = [songplay_table_drop, user_table_drop, song_table_drop, artist_table_drop, time_table_drop]
-copy_table_queries = []

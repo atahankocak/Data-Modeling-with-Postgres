@@ -11,21 +11,9 @@ def create_database():
     Creates and connects to sparkifydb in the local machine
     by connecting to a different database to perform drop and create sparkifydb.
     """
-    """ set up the initial parameters dictionary for PostgreSQL"""
-    # initial database to assit with DROP and CREATE new database
-    parameters_dict_initial = {
-        "host": "localhost",
-        "database": "atahankocak",
-        "port": "5432"
-    }
-    parameters_dict_project = {
-        "host": "localhost",
-        "database": "sparkifydb",
-        "port": "5432"
-    }
 
     try:
-        conn = psycopg2.connect(**db_parameters_local)
+        conn = psycopg2.connect(**db_parameters)
         print("1 - Connected to the existing {} in {} to run the DROP and CREATE project database scripts.".format(db_parameters_local['database'], db_parameters_local['host']))
     except psycopg2.Error as e:
         print("Error: Could not make connection to the initial Postgres Database to drop and create the project database")
@@ -44,7 +32,7 @@ def create_database():
     try:
         cur.execute("DROP DATABASE IF EXISTS sparkifydb")
         cur.execute("CREATE DATABASE sparkifydb WITH ENCODING 'utf8' TEMPLATE template0")
-        print("\n2 - Project database: {} is created".format(parameters_dict_project['database']))
+        print("\n2 - Project database: {} is created".format(db_parameters_local['database']))
     except psycopg2.Error as e:
         print("Issue creating database")
         print(e)
@@ -54,7 +42,7 @@ def create_database():
 
     # connect to sparkify database
     try:
-        conn = psycopg2.connect(**parameters_dict_project)
+        conn = psycopg2.connect(**db_parameters_local)
         print()
     except psycopg2.Error as e:
         print("Error: Could not make connection to the Postgres Database")
