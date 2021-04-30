@@ -34,11 +34,23 @@ If you do not have Homebrew, I recommend to get it in your system. For mac users
 
 *I had some issues installing "psycopg2" library in the terminal. If you experience that, you can try running 
 ```
-!pip install psycopg2" 
+!pip install psycopg2 
 ```
 in Jupyter notebook.* 
 
-The next step is to update the "info.py" with your connection parameters used in psycopg2 and directories of the datasets (JSON) in your physical or virtual machine. Once that is done, you can use the terminal or Jupyter Notebook (with "!" in the begining of the command) to run "python create_tables.py". It will set up the database and create the tables for you.  Then, you can go ahead and run "python etl_insert.py" or "python etl_copy.py" to populate the tables in your new database. 
+The next step is to update the "info.py" with your connection parameters used in psycopg2 and directories of the datasets (JSON) in your physical or virtual machine. Once that is done, you can use the terminal or Jupyter Notebook (with "!" in the begining of the command) to run:
+```
+python create_tables.py
+```
+It will set up the database and create the tables for you.  Then, you can go ahead and run 
+```
+python etl_insert.py
+```
+or 
+```
+python etl_copy.py
+```
+to populate the tables in your new database. 
 
 ### Last note
 In this particular exercise, I processed two JSON files with song and their log data for a project. However, this logic can be implemented into any dataset comeing in JSON format. 
