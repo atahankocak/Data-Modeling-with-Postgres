@@ -22,8 +22,6 @@ The 1st version (etl_insert.py) uses INSERT command to each iteration (line) of 
 
 *I added a timing logic in each process file. To compare each process in terms of time, hence cost.*
 
-Here is how you can run them.
-
 ### Database Diagram  
 Here is the ERD of the project:
 
