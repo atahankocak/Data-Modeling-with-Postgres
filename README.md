@@ -32,11 +32,11 @@ $ brew install postgresql
 ```
 If you do not have Homebrew, I recommend to get it in your system. For mac users, you can find this website: (https://www.digitalocean.com/community/tutorials/how-to-install-and-use-homebrew-on-macos). Please check if you have the required libraries/packages/modules. Please see the "requirements.txt" to identfy what you would need to install in terms of Python packages. 
 
-*I had some issues installing "psycopg2" library in the terminal. If you experience that, you can try running 
+*I had some issues installing "psycopg2" library in the terminal. If you experience that, you can try running* 
 ```
 !pip install psycopg2 
 ```
-in Jupyter notebook.* 
+*in Jupyter notebook.* 
 
 The next step is to update the "info.py" with your connection parameters used in psycopg2 and directories of the datasets (JSON) in your physical or virtual machine. Once that is done, you can use the terminal or Jupyter Notebook (with "!" in the begining of the command) to run:
 ```
